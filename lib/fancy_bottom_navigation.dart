@@ -22,7 +22,8 @@ class FancyBottomNavigation extends StatefulWidget {
       this.activeIconColor,
       this.inactiveIconColor,
       this.textColor,
-      this.barBackgroundColor})
+      this.barBackgroundColor,
+	  this.fontSize})
       : assert(onTabChangedListener != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
@@ -33,6 +34,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color? inactiveIconColor;
   final Color? textColor;
   final Color? barBackgroundColor;
+  final double? fontSize;
   final List<TabData> tabs;
   final int initialSelection;
 
@@ -56,6 +58,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   late Color inactiveIconColor;
   late Color barBackgroundColor;
   late Color textColor;
+  late double fontSize;
 
   @override
   void didChangeDependencies() {
@@ -85,6 +88,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         ((Theme.of(context).brightness == Brightness.dark)
             ? Colors.white
             : Theme.of(context).primaryColor);
+	fontSize = widget.fontSize ?? DefaultTextStyle.of(context).style.fontSize;
   }
 
   @override
@@ -134,7 +138,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                       widget.onTabChangedListener(selected);
                       _setSelected(uniqueKey);
                       _initAnimationAndStart(_circleAlignX, 1);
-                    }))
+                    },
+					fontSize: fontSize))
                 .toList(),
           ),
         ),
