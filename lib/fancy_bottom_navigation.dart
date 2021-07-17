@@ -88,7 +88,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         ((Theme.of(context).brightness == Brightness.dark)
             ? Colors.white
             : Theme.of(context).primaryColor);
-	fontSize = widget.fontSize ?? DefaultTextStyle.of(context).style.fontSize;
+	fontSize = widget.fontSize ?? DefaultTextStyle.of(context).style.fontSize ?? 14;
   }
 
   @override
